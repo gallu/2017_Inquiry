@@ -1,5 +1,8 @@
 <?php
 // inquiry_fin.php
+//
+ob_start();
+session_start();
 
 // 入力された情報を取得
 /*
@@ -44,9 +47,14 @@ if ('' !== $input_data['birthday']) {
 
 // エラー判定
 if (array() !== $error_detail) {
-    //
-var_dump($error_detail);
-    echo 'エラーがあったらしい！！';
+    // エラー内容をセッションに保持する
+    $_SESSION['buffer']['error_detail'] = $error_detail;
+    // 入力情報をセッションに保持する
+    $_SESSION['buffer']['input'] = $input_data;
+//var_dump($error_detail);
+    // echo 'エラーがあったらしい！！';
+    // 入力ページに突き返す
+    header('Location: ./inquiry.php');
     exit;
 }
 // ダミー

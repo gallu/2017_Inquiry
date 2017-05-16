@@ -1,5 +1,4 @@
 rsync -a ./ 02/ --exclude "02" --exclude ".git"
 rsync -a ./ 03/ --exclude "02" --exclude "03" --exclude ".git"
-rsync -a ./ 04/ --exclude "02" --exclude "03" --exclude "04" --exclude ".git"
 
 

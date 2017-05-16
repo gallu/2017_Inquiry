@@ -16,28 +16,10 @@ $input_data = array();
 foreach($params  as  $p) {
     $input_data[$p] = (string)@$_POST[$p];
 }
-//var_dump($input_data);
+var_dump($input_data);
 
 // validate(情報は正しい？)
 $error_detail = array(); // エラー情報格納用変数
-
-// CSRFチェック
-// tokenの存在確認(check exist)
-$posted_token = $_POST['csrf_token'];
-if (false === isset($_SESSION['csrf_token'][$posted_token])) {
-    // tokenが無いんでエラー
-    $error_detail['error_csrf_token'] = true;
-} else {
-    // tokenの寿命確認(check life)
-    $ttl = $_SESSION['csrf_token'][$posted_token];
-    if (time() >=  $ttl + 60) {
-        // token作成から60秒以上経過しているのでNG
-        $error_detail['error_csrf_timeover'] = true;
-    }
-    // いずれにしてもtokenは１回しか使えないので、消す
-    unset($_SESSION['csrf_token'][$posted_token]);
-}
-
 
 // 必須チェック
 $must_params = array('email', 'body');

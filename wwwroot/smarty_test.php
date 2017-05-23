@@ -9,9 +9,11 @@ $smarty_obj  =  new Smarty();
 //var_dump($smarty_obj);
 $smarty_obj->setTemplateDir( __DIR__ . '/../smarty/templates/' );
 $smarty_obj->setCompileDir( __DIR__ . '/../smarty/templates_c/' );
+// エスケープを自動でonにする
+$smarty_obj->escape_html = true;
 
 // Smartyへのデータの入力
-$s = 'データ入力テスト';
+$s = '<s>test</s>';
 $smarty_obj->assign('val',  $s);
 //
 $awk['a'] = '配列のa';
